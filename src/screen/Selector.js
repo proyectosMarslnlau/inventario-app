@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, Keyboard} from 'react-native';
 //
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,6 +10,12 @@ import {DEVICE_WIDTH, DEVICE_HEIGHT} from '../resource/js/device';
 
 //-----------------------------------------------------------
 const Selector = ({navigation}) => {
+  //
+  useEffect(() => {
+    Keyboard.dismiss();
+  }, []);
+
+  //
   const onPressInscription = () => {
     navigation.navigate('inscription');
   };
@@ -19,20 +25,24 @@ const Selector = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.seccion_1}>
-        <Button
-          title="Ingresar"
-          buttonStyle={styles.boton}
-          onPress={onPressInscription}
-        />
-      </View>
-      <View style={styles.seccion_2}>
-        <Button
-          title="Ingresar"
-          buttonStyle={styles.boton}
-          onPress={onPressView}
-        />
-      </View>
+      <ImageBackground
+        source={require('../resource/img/borde_total.jpg')}
+        style={styles.image}>
+        <View style={styles.seccion_1}>
+          <Button
+            title="Ingresar2"
+            buttonStyle={styles.boton}
+            onPress={onPressInscription}
+          />
+        </View>
+        <View style={styles.seccion_2}>
+          <Button
+            title="Ingresar"
+            buttonStyle={styles.boton}
+            onPress={onPressView}
+          />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -41,19 +51,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: 'red',
+    backgroundColor: 'black',
+  },
+  ///-------------------------------- BACKGROUND TOTAL
+  image: {
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   seccion_1: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.5,
-    backgroundColor: 'green',
+
     justifyContent: 'center',
     alignItems: 'center',
   },
   seccion_2: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.5,
-    backgroundColor: 'yellow',
+
     justifyContent: 'center',
     alignItems: 'center',
   },

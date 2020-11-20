@@ -1,12 +1,19 @@
 import React from 'react';
 
-import {StyleSheet, View, Text} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native';
 //Imoprtamos el Navigatiojn
-import Navigation from './src/navigation/Navigation'
+import Navigation from './src/navigation/Navigation';
+//Importamos los STATE
+import AlertState from './src/context/alert/AlertState';
+import LoginState from './src/context/login/LoginState';
 const App = () => {
-  return ( 
-     <Navigation />
-   );
-}
- 
+  return (
+    <LoginState>
+      <AlertState>
+        <Navigation />
+      </AlertState>
+    </LoginState>
+  );
+};
+
 export default App;
