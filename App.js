@@ -7,16 +7,19 @@ import Navigation from './src/navigation/Navigation';
 import AlertState from './src/context/alert/AlertState';
 import LoginState from './src/context/login/LoginState';
 import InformationState from './src/context/information/InformationState';
+import InscriptionState from './src/context/inscription/InscriptionState';
 //--------------------
 const App = () => {
   return (
-    <InformationState>
-      <LoginState>
-        <AlertState>
-          <Navigation />
-        </AlertState>
-      </LoginState>
-    </InformationState>
+    <InscriptionState>
+      <InformationState>
+        <LoginState>
+          <AlertState>
+            <Navigation />
+          </AlertState>
+        </LoginState>
+      </InformationState>
+    </InscriptionState>
   );
 };
 

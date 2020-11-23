@@ -5,7 +5,7 @@ import ImagePicker from 'react-native-image-picker';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //
-const Camera = () => {
+const Camera = ({guardarImagen}) => {
   //------------------------------------------------------------
   /*useEffect(() => {
     if (reiniciar !== false) {
@@ -39,15 +39,13 @@ const Camera = () => {
       storageOptions: {
         skipBackup: true,
         path: 'images',
-        maxWidth: 200,
-        maxHeight: 200,
+        maxWidth: 400,
+        maxHeight: 400,
         quality: 0.2,
       },
     };
 
     ImagePicker.showImagePicker(options, (res) => {
-      console.log('Response = ', res);
-
       if (res.didCancel) {
         console.log('User cancelled image picker');
       } else if (res.error) {
@@ -61,7 +59,7 @@ const Camera = () => {
         guardarFoto({
           resourcePath: source,
         });
-        console.log('LENNY LAURA VALENCIA');
+        guardarImagen(source);
       }
     });
   };
