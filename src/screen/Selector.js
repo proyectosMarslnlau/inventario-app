@@ -30,14 +30,14 @@ const Selector = ({navigation}) => {
         style={styles.image}>
         <View style={styles.seccion_1}>
           <Button
-            title="Ingresar2"
+            title="Registrar Objeto"
             buttonStyle={styles.boton}
             onPress={onPressInscription}
           />
         </View>
         <View style={styles.seccion_2}>
           <Button
-            title="Ingresar"
+            title="Ingresar Visor QR"
             buttonStyle={styles.boton}
             onPress={onPressView}
           />

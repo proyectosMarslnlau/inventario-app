@@ -6,13 +6,17 @@ import Navigation from './src/navigation/Navigation';
 //Importamos los STATE
 import AlertState from './src/context/alert/AlertState';
 import LoginState from './src/context/login/LoginState';
+import InformationState from './src/context/information/InformationState';
+//--------------------
 const App = () => {
   return (
-    <LoginState>
-      <AlertState>
-        <Navigation />
-      </AlertState>
-    </LoginState>
+    <InformationState>
+      <LoginState>
+        <AlertState>
+          <Navigation />
+        </AlertState>
+      </LoginState>
+    </InformationState>
   );
 };
 

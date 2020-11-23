@@ -20,6 +20,8 @@ target 'inventario_app_1' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'react-native-torch', :path => '../node_modules/react-native-torch'
+
   target 'inventario_app_1Tests' do
     inherit! :complete
     # Pods for testing

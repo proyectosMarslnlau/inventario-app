@@ -71,6 +71,13 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>PFBeauSansPro-Black.ttf</string>
+		<string>PFBeauSansPro-BlackItalic.ttf</string>
+		<string>PFBeauSansPro-Regular.ttf</string>
+		<string>PFBeauSansPro-Thin.ttf</string>
+		<string>Smoolthan Bold-Italic.otf</string>
+		<string>Smoolthan Bold.otf</string>
+		<string>Smoolthan Regular.otf</string>
 	</array>
 </dict>
 </plist>

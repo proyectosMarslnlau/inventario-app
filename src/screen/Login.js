@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 //iMPORTAMOS COMPONENTES -> ALERTERROR
 import AlertError from '../item/AlertError';
+import AlertSuccess from '../item/AlertSuccess';
 //Importamos REACT NATIVE ELEMENTS
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
@@ -16,12 +17,12 @@ import {Input, Button} from 'react-native-elements';
 import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../resource/js/device';
 //Importamos los USECONTEXT
 import alertContext from '../context/alert/alertContext';
-
+import loginContext from '../context/login/loginContext';
 //---------------------------------------------------------------
 const Login = ({navigation}) => {
   //Importamos las varaibles de useContext
-  const {alerterror, funcionAlertError} = useContext(alertContext);
-
+  const {funcionAlertError, funcionAlertSuccess} = useContext(alertContext);
+  const {funcionPeticionLogin} = useContext(loginContext);
   //USE STATE LOCALES
   const [user, guardarUser] = useState('');
   const [pass, guardarPass] = useState('');
@@ -50,7 +51,24 @@ const Login = ({navigation}) => {
       };
       funcionAlertError(valorError);
     } else {
-      navigation.navigate('selector');
+      funcionPeticionLogin(user, pass).then((item) => {
+        if (item === false) {
+          let valorError = {
+            estado: true,
+            mensaje: 'Datos Ingresados Incorrectos Revise Nuevamente',
+          };
+          funcionAlertError(valorError);
+        } else {
+          let valorSucess = {
+            estado: true,
+            mensaje: 'Login Correcto',
+          };
+          funcionAlertSuccess(valorSucess);
+          setTimeout(() => {
+            navigation.navigate('selector');
+          }, 1000);
+        }
+      });
     }
   };
 
@@ -99,6 +117,7 @@ const Login = ({navigation}) => {
       </ImageBackground>
       {/* SECCION DE ALERTS */}
       <AlertError />
+      <AlertSuccess />
     </View>
   );
 };

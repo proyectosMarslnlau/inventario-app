@@ -4,6 +4,8 @@ import loginContext from './loginContext';
 import loginReducer from './loginReducer';
 //Importamos las URL  de las peticiones necesarios
 import {url_peticion_login} from '../../resource/js/constant';
+//Importamos AXIOS
+import axios from 'axios';
 //-----------------------------
 const LoginState = (props) => {
   const initialState = {
@@ -11,9 +13,23 @@ const LoginState = (props) => {
   };
   const [state, dispatch] = useReducer(loginReducer, initialState);
   //Funciones DISTPACH
-  const funcionPeticionLogin = (valor_1, valor_2) => {
+  const funcionPeticionLogin = async (valor_1, valor_2) => {
     //Url de peticion de LOGIN
     const url = url_peticion_login;
+    try {
+      const peticion = await axios.post(url, {
+        user: valor_1,
+        pass: valor_2,
+      });
+      const respuestaPeticion = peticion.data.response;
+      if (respuestaPeticion === 'correcto') {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      alert('Error, intente mas tarde');
+    }
   };
   return (
     <loginContext.Provider
