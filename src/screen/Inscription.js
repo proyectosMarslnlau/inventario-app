@@ -26,7 +26,7 @@ import Torch from 'react-native-torch';
 import inscriptionContext from '../context/inscription/inscriptionContext';
 
 //
-import RNPickerSelect from 'react-native-picker-select';
+import {Picker} from '@react-native-community/picker';
 
 //--------------------------------------------------
 const Inscription = ({navigation}) => {
@@ -103,11 +103,23 @@ const Inscription = ({navigation}) => {
       costo.trim() === '' ||
       anio.trim() === '' ||
       estado.trim() === '' ||
-      descripcion.trim() === ''
+      descripcion.trim() === '' ||
+      lugar.trim() === '' ||
+      Object.keys(imagen).length === 0
     ) {
       alert('datos vacios');
     } else {
-      funcionEnviarInformacion(code, cifra, nombre, lugar, costo);
+      funcionEnviarInformacion(
+        code,
+        cifra,
+        nombre,
+        lugar,
+        costo,
+        anio,
+        imagen,
+        descripcion,
+        estado,
+      );
     }
   };
 
@@ -154,27 +166,33 @@ const Inscription = ({navigation}) => {
             onChangeText={onChangeNombre}
           />
         </View>
-        <RNPickerSelect
-          onValueChange={onChangeLugar}
+        <Picker
           style={styles.selector}
-          items={[
-            {label: 'Area REALIDAD PERDIDA', value: 'boljov-001'},
-            {label: 'Area SKYWORTH', value: 'boljov-002'},
-            {label: 'Area TRICASTER', value: 'boljov-003'},
-            {label: 'Area BOPLUS', value: 'boljov-004'},
-            {label: 'Area VESTUARIO', value: 'boljov-005'},
-            {label: 'Area PRESENTACIONES', value: 'boljov-006'},
-            {label: 'Area ESTUDIO', value: 'boljov-007'},
-            {label: 'Area QD SHOW', value: 'boljov-008'},
-            {label: 'Area COCINA', value: 'boljov-009'},
-            {label: 'Area PASILLO', value: 'boljov-010'},
-            {label: 'Area SOPORTE TECNICO', value: 'boljov-011'},
-            {label: 'Area PRODUCCION', value: 'boljov-012'},
-            {label: 'Area GERENCIA GENERAL', value: 'boljov-013'},
-            {label: 'Area GERENCIA COMERCIAL', value: 'boljov-014'},
-            {label: 'Area RADIO', value: 'boljov-015'},
-          ]}
-        />
+          onValueChange={onChangeLugar}
+          pickerStyleType={{
+            fontFamily: 'Montserrat-Medium',
+          }}>
+          <Picker.Item
+            label="Seleccion una Opcion"
+            value=""
+            itemStyle={styles.options}
+          />
+          <Picker.Item label="Area REALIDAD PERDIDA" value="boljov-001" />
+          <Picker.Item label="Area SKYWORTH" value="boljov-002" />
+          <Picker.Item label="Area TRICASTER" value="boljov-003" />
+          <Picker.Item label="Area BOPLUS" value="boljov-004" />
+          <Picker.Item label="Area VESTUARIO" value="boljov-005" />
+          <Picker.Item label="Area PRESENTACIONES" value="boljov-006" />
+          <Picker.Item label="Area ESTUDIO" value="boljov-007" />
+          <Picker.Item label="Area QD SHOW" value="boljov-008" />
+          <Picker.Item label="Area COCINA" value="boljov-009" />
+          <Picker.Item label="Area PASILLO" value="boljov-010" />
+          <Picker.Item label="Area SOPORTE TECNICO" value="boljov-011" />
+          <Picker.Item label="Area PRODUCCION" value="boljov-012" />
+          <Picker.Item label="Area GERENCIA GENERAL" value="boljov-013" />
+          <Picker.Item label="Area GERENCIA COMERCIAL" value="boljov-014" />
+          <Picker.Item label="Area RADIO" value="boljov-015" />
+        </Picker>
         <View style={styles.seccion_input}>
           <Text>COSTO</Text>
           <Input
@@ -264,9 +282,9 @@ const styles = StyleSheet.create({
   selector: {
     color: 'black',
     height: 50,
-    width: DEVICE_WIDTH * 0.6,
+    width: DEVICE_WIDTH,
     borderRadius: 10,
-    backgroundColor: '#3B9E99',
+    backgroundColor: 'red',
     fontFamily: 'Montserrat-Medium',
   },
 });

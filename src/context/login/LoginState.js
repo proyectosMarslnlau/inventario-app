@@ -22,6 +22,7 @@ const LoginState = (props) => {
         pass: valor_2,
       });
       const respuestaPeticion = peticion.data.response;
+      console.log(respuestaPeticion);
       if (respuestaPeticion === 'correcto') {
         return true;
       } else {

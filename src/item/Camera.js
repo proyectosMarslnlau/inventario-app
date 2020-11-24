@@ -34,8 +34,8 @@ const Camera = ({guardarImagen}) => {
       takePhotoButtonTitle: 'Tomar Foto',
       chooseFromLibraryButtonTitle: 'Buscar en mis Archivos',
       chooseFromLibraryButtonTitle: null,
-      quality: 0.8,
-      maxWidth: 600,
+      quality: 0.2,
+      maxWidth: 400,
       storageOptions: {
         skipBackup: true,
         path: 'images',
