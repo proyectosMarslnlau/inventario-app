@@ -9,11 +9,13 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
+
 //Importamos el CONTEXT
 import informationContext from '../context/information/informationContext';
+
 //Importamos las medidas del DISPOSITIVO
 import {DEVICE_WIDTH, DEVICE_HEIGHT} from '../resource/js/device';
-//
+
 //
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -42,11 +44,14 @@ const Information = ({navigation}) => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', backAction);
   }, []);
+
   //
   const onPressPasarSreenQr = () => {
     funcionHabilitarCameraQr(true);
     navigation.navigate('qr');
   };
+
+  //------------------------------------------------------------
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>

@@ -6,6 +6,8 @@ import loginReducer from './loginReducer';
 import {url_peticion_login} from '../../resource/js/constant';
 //Importamos AXIOS
 import axios from 'axios';
+//Importamos as funciones de ASYNC STORE
+import {storeData} from '../../resource/js/storelogin';
 //-----------------------------
 const LoginState = (props) => {
   const initialState = {
@@ -22,8 +24,9 @@ const LoginState = (props) => {
         pass: valor_2,
       });
       const respuestaPeticion = peticion.data.response;
-      console.log(respuestaPeticion);
       if (respuestaPeticion === 'correcto') {
+        //Guardamos el logueo en ASYNC STORE
+        storeData('activo');
         return true;
       } else {
         return false;

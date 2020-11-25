@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useState} from 'react';
+import React, {Fragment, useContext, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,10 @@ import {DEVICE_HEIGHT, DEVICE_WIDTH} from '../resource/js/device';
 //Importamos los USECONTEXT
 import alertContext from '../context/alert/alertContext';
 import loginContext from '../context/login/loginContext';
+//Importamos la orientacion de MOBILE
+import Orientation from 'react-native-orientation-locker';
+//
+import {getData} from '../resource/js/storelogin';
 //---------------------------------------------------------------
 const Login = ({navigation}) => {
   //Importamos las varaibles de useContext
@@ -26,7 +30,16 @@ const Login = ({navigation}) => {
   //USE STATE LOCALES
   const [user, guardarUser] = useState('');
   const [pass, guardarPass] = useState('');
-
+  //Usamos los USEEFFECT
+  useEffect(() => {
+    getData().then((item) => {
+      if (item !== null) {
+        navigation.navigate('selector');
+      }
+    });
+    //Bloqueamos la orientacion solo a PORTRAIT
+    Orientation.lockToPortrait();
+  }, []);
   //Cargamos las variables de entrada de usuario y pass
   const onChangeUsuario = (valor) => {
     guardarUser(valor);

@@ -5,28 +5,21 @@ import ImagePicker from 'react-native-image-picker';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //
-const Camera = ({guardarImagen}) => {
-  //------------------------------------------------------------
-  /*useEffect(() => {
-    if (reiniciar !== false) {
-      guardarState({
-        resourcePath: {},
-      });
-    }
-  }, [reiniciar]);*/
-  //-------------------------------------------------------------
+const Camera = ({imagen, guardarImagen}) => {
   const [foto, guardarFoto] = useState({
     resourcePath: {},
   });
-  const [state, guardarState] = useState({
-    resourcePath: {},
-  });
-  /*
-  if (Object.keys(foto.resourcePath).length === 0) {
-    //console.log('vacio');
-  } else {
-    console.log('revisar');
-  }*/
+
+  //------------------------------------------------------------
+  useEffect(() => {
+    if (imagen === '') {
+      guardarFoto({
+        resourcePath: {},
+      });
+    }
+  }, [imagen]);
+  //-------------------------------------------------------------
+
   const selectFile = () => {
     var options = {
       title: 'Select Image',
@@ -52,10 +45,8 @@ const Camera = ({guardarImagen}) => {
         console.log('ImagePicker Error: ', res.error);
       } else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton);
-        alert(res.customButton);
       } else {
         let source = res;
-        console.log(res);
         guardarFoto({
           resourcePath: source,
         });
@@ -104,6 +95,7 @@ const Camera = ({guardarImagen}) => {
           titleStyle={{
             fontFamily: 'Exo2-Italic',
           }}
+          buttonStyle={styles.boton_camera}
         />
       </View>
     </View>
@@ -136,5 +128,8 @@ const styles = StyleSheet.create({
   },
   icono: {
     marginHorizontal: 5,
+  },
+  boton_camera: {
+    backgroundColor: 'green',
   },
 });

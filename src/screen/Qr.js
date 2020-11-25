@@ -1,6 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react';
 
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  BackHandler,
+} from 'react-native';
 //
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,7 +24,17 @@ const Qr = ({navigation}) => {
     informationContext,
   );
   //UseEFFECT
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //Funcion para boton de RETROCESO de ANDROID
+    const backAction = async () => {
+      /* Pasar de SCREEN a SELECTOR  */
+      navigation.navigate('selector');
+      return true;
+    };
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, []);
 
   //STATE LOCALES
   const [linterna, guardarLinterna] = useState(false);

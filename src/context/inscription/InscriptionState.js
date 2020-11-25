@@ -8,10 +8,13 @@ import axios from 'axios';
 import {url_peticion_envio_informacion} from '../../resource/js/constant';
 //-----------------------------------------------------
 const InscriptionState = (props) => {
+  //Estados iniciales de REDUCER
   const initialState = {};
+
+  //USE REDUCER del state
   const [state, dispatch] = useReducer(inscriptionReducer, initialState);
 
-  //Funcion enviar datos a la API
+  //Funcion enviar datos a la API de INSCRIPCION DE DATOS
   const funcionEnviarInformacion = async (
     valor_1,
     valor_2,
@@ -24,8 +27,9 @@ const InscriptionState = (props) => {
     valor_9,
   ) => {
     try {
+      //Desglozamos el valor de IMAGEN que se encuentra en JSON
+
       let image = valor_7.data;
-      console.log(image);
       const url = url_peticion_envio_informacion;
       const peticion = await axios.post(url, {
         code: valor_1,
@@ -38,12 +42,14 @@ const InscriptionState = (props) => {
         descripcion: valor_8,
         estado: valor_9,
       });
-      console.log(peticion);
       const peticionRespuesta = peticion.data;
+
+      //Verificamos la respuesta de e
+      //peticionRespuesta.response
       if (peticionRespuesta.response === 'correcto') {
-        alert('correcto');
+        return true;
       } else {
-        alert('ERROR');
+        return false;
       }
     } catch (error) {
       alert('error de servidor nuevo');
