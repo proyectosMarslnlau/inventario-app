@@ -78,20 +78,25 @@ const Login = ({navigation}) => {
           };
           funcionAlertSuccess(valorSucess);
           setTimeout(() => {
+            funcionResetearEntrada();
             navigation.navigate('selector');
           }, 1000);
         }
       });
     }
   };
-
+  //
+  const funcionResetearEntrada = () => {
+    guardarUser('');
+    guardarPass('');
+  }
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../resource/img/borde_inicial.png')}
         style={styles.image}>
         <View style={styles.seccion_1}>
-          <Text>Registro de Inventario</Text>
+          <Text style={styles.titulo_principal}>Registro de Inventario</Text>
         </View>
         <View style={styles.seccion_2}>
           <KeyboardAvoidingView
@@ -110,6 +115,7 @@ const Login = ({navigation}) => {
                     fontFamily: 'Montserrat-Medium',
                   }}
                   onChangeText={onChangeUsuario}
+                  value={user}
                 />
                 <Input
                   placeholder="Password"
@@ -119,6 +125,7 @@ const Login = ({navigation}) => {
                     fontFamily: 'Montserrat-Medium',
                   }}
                   onChangeText={onChangePass}
+                  value={pass}
                 />
                 <Button title="Ingresar" onPress={onPressSelector} />
               </View>
@@ -143,6 +150,13 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
+  //
+  titulo_principal : {
+    color : 'black',
+    fontFamily : 'PFBeauSansPro-BlackItalic',
+    fontSize : 18
+  },  
+  //
   seccion_1: {
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT * 0.15,
@@ -161,6 +175,9 @@ const styles = StyleSheet.create({
     margin: 20,
     paddingHorizontal: DEVICE_WIDTH * 0.15,
     fontSize: 16,
+    fontFamily : 'PFBeauSansPro-Thin',
+    fontWeight : '700',
+
   },
   //------------------------------
   seccion_3: {
